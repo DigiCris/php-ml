@@ -30,8 +30,14 @@ $predict = $regression->predict($dataSet->getTestSamples());
 // califico el entrenamiento comparando la correlación de los valores de la regrsión con los verdaderos en testSamples
 $score = Regression::r2Score($dataSet->getTestLabels(), $predict);
 
+// Imprimo la correlación para saber si es buena o no
 echo "score is: ".$score;
-//print_r($predict);
+
+// Predfigo un valor que no esta en la tabla del csv
+$predict = $regression->predict([80]);
+
+echo "<br><br>";
+echo $predict;
 
 ?>
 
