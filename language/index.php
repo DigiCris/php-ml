@@ -32,7 +32,7 @@ $vectorizer->transform($samples);
 
 $dataset = new ArrayDataset($samples, $targets);
 
-$randomSplit = new StratifiedRandomSplit($dataset, 0.8);
+$randomSplit = new StratifiedRandomSplit($dataset, 0.2);
 
 $classifier = new SVC(Kernel::RBF, 10000);
 $classifier->train($randomSplit->getTrainSamples(), $randomSplit->getTrainLabels());
