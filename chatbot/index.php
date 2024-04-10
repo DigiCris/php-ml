@@ -14,7 +14,7 @@ if (isset($_POST['pregunta'])) {
   } else {
     // No se recibió ninguna pregunta, devolver un mensaje de error
     echo "No se recibió ninguna pregunta. Intentelo nuevamente más tarde!";
-    //exit;
+    exit;
   }
 
   $respuestas = array(
@@ -40,7 +40,10 @@ if (isset($_POST['pregunta'])) {
     Antes de realizar una inversión, evalúa cuidadosamente el riesgo potencial en comparación con la recompensa esperada. Busca activos que ofrezcan un equilibrio adecuado entre riesgo y potencial de rendimiento.
     Nuestro equipo de profesionales realiza un exhaustivo análisis de cada proyecto, su viabilidad, riesgos, retornos estimados, estructura jurídica-legal, entre otros aspectos, para que cada usuario cuente con más y mejores herramientas a la hora de decidir realizar una inversión.
     ",
-    "Por cada proyecto fondeado, Comuny-T cobra un 5% de comisión sobre el dinero aportado por los inversores. En el caso de retiro de dinero , la comisión es del 1.2%, con un mínimo de USD2."
+    "Por cada proyecto fondeado, Comuny-T cobra un 5% de comisión sobre el dinero aportado por los inversores. En el caso de retiro de dinero , la comisión es del 1.2%, con un mínimo de USD2.",
+    "Hola, Encantado. Soy COMUNY-BOT y estoy aquí para ayudarte. Pregunta lo que deseas saber!!!.",
+    "Encantado en ayudar. Espero verte pronto. Exitos en tus inversiones!!!.",
+    "Puedes comunicarte por whatsapp al +54911 12345678!!!."
   );
 
 

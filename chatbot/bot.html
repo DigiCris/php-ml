@@ -144,6 +144,19 @@ function actualizarChat() {
   chatArea.scrollTop = chatArea.scrollHeight;
 }
 
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("keyup", function(event) {
+    // Verificar si la tecla presionada es "Enter" (código 13)
+    if (event.keyCode === 13) {
+      // Mostrar una alerta
+      //alert("Se presionó la tecla Enter");
+      document.getElementById("submit").click();
+    }
+  });
+});
+
+
   </script>
 </head>
 <body>
@@ -157,11 +170,12 @@ function actualizarChat() {
       </div>
       <div class="input-area">
         <input type="text" id="userInput" placeholder="Escribe tu pregunta...">
-        <button onclick="agregarPregunta()">Enviar</button>
+        <button onclick="agregarPregunta()" id="submit">Enviar</button>
       </div>
     </div>
   </div>
 
   <script src="script.js"></script>
+  
 </body>
 </html>
