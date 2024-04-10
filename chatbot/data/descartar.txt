@@ -1,0 +1,15 @@
+stop-words
+a, al, ante, bajo, cabe, con, contra, de, desde, durante, en, entre, hacia, hasta, mediante, para, por, según, 
+sin, sobre, tras, salvo, como, pero, más, menos, muy, mucho, poco, también, tampoco, ya, aún, si, no, sí, o, u, 
+ni, qué, quién, cuál, cómo, cuándo, dónde, por qué, para qué, con qué, de qué, quiénes, cuáles, cuánto, cuántos, 
+cuánta, cuántas, todo, todos, toda, todas, otro, otros, otra, otras, mismo, mismos, misma, mismas, tal, tales, 
+cierto, ciertos, cierta, ciertas, aquel, aquellos, aquella, aquellas, este, estos, esta, estas, ese, esos, esa, 
+esas, uno, unos, una, unas, mucho, muchos, mucha, muchas, poco, pocos, poca, pocas, todo, todos, toda, todas, 
+varios, varias, tanto, tantos, tanta, tantas, cualquier, cualesquier, cuanta, cuantas, cuantos, cuántas, cuánto, 
+cuántos, todo, todos, toda, todas, ninguno, ninguna, ningunos, ningunas, ninguno, ningunos, ninguna, ningunas, otro, 
+otros, otra, otras.
+
+
+
+
+

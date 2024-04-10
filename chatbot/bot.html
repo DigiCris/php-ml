@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bot de Ayuda</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        }
+
+        .chat-window {
+        width: 400px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+        background-color: #f2f2f2;
+        padding: 10px;
+        text-align: center;
+        }
+
+        .header h2 {
+        margin: 0;
+        }
+
+        .chat-area {
+        height: 300px;
+        padding: 10px;
+        overflow-y: scroll;
+        }
+
+        .input-area {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        }
+
+        .input-area input[type="text"] {
+        flex-grow: 1;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        }
+
+        .input-area button {
+        padding: 5px 10px;
+        margin-left: 10px;
+        }
+
+        .pregunta {
+            font-weight: bold;
+        }
+        .respuesta {
+            margin-bottom: 12px;
+        }
+  </style>
+
+  <script>
+// Vector de preguntas
+var preguntas = [];
+
+// Vector de respuestas
+var respuestas = [];
+
+// Función para agregar una pregunta
+function agregarPregunta() {
+  var userInput = document.getElementById("userInput");
+  var pregunta = userInput.value.trim();
+
+  if (pregunta !== "") {
+    preguntas.push(pregunta);
+    obtenerRespuesta(pregunta); // Llamar a obtenerRespuesta inmediatamente después de agregar la pregunta
+    userInput.value = "";
+  }
+}
+
+// Función para obtener una respuesta del bot
+function obtenerRespuesta(pregunta) {
+  var url = "./index.php"; // Reemplaza con la URL correcta del endpoint
+
+  // Crear objeto XMLHttpRequest
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  // Manejar la respuesta de la solicitud
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      var respuesta = xhr.responseText;
+      respuestas.push(respuesta); // Agregar la respuesta al vector de respuestas
+      actualizarChat(); // Actualizar el chat después de recibir la respuesta
+    } else {
+      var error = "Error en la solicitud. Código de estado: " + xhr.status;
+      respuestas.push(error); // Agregar el mensaje de error al vector de respuestas
+      actualizarChat(); // Actualizar el chat después de recibir el error
+    }
+  };
+
+  // Manejar errores de red
+  xhr.onerror = function () {
+    var error = "Error de red al realizar la solicitud.";
+    respuestas.push(error); // Agregar el mensaje de error al vector de respuestas
+    actualizarChat(); // Actualizar el chat después de recibir el error
+  };
+
+  // Enviar la solicitud POST con la pregunta como dato
+  var data = {
+    pregunta: pregunta
+  };
+  xhr.send(JSON.stringify(data));
+}
+
+// Función para actualizar el chat
+function actualizarChat() {
+  var chatArea = document.getElementById("chatArea");
+  chatArea.innerHTML = "";
+
+  for (var i = 0; i < preguntas.length; i++) {
+    var pregunta = preguntas[i];
+    var respuesta = respuestas[i]; // Obtener la respuesta correspondiente
+
+    var chatItem = document.createElement("div");
+    chatItem.classList.add("chat-item");
+
+    var preguntaElement = document.createElement("div");
+    preguntaElement.classList.add("pregunta");
+    preguntaElement.textContent = pregunta;
+
+    var respuestaElement = document.createElement("div");
+    respuestaElement.classList.add("respuesta");
+    respuestaElement.textContent = respuesta;
+
+    chatItem.appendChild(preguntaElement);
+    chatItem.appendChild(respuestaElement);
+
+    chatArea.appendChild(chatItem);
+  }
+
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="chat-window">
+      <div class="header">
+        <h2>Bot de Ayuda</h2>
+      </div>
+      <div class="chat-area" id="chatArea">
+        <!-- Aquí se mostrarán las conversaciones -->
+      </div>
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="Escribe tu pregunta...">
+        <button onclick="agregarPregunta()">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
